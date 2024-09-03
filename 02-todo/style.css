@@ -1,0 +1,49 @@
+body {
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: green;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+header > * {
+    margin: 1rem;
+}
+
+header span {
+    font-size: 1.5rem;
+}
+
+header button {
+    text-decoration: underline;
+    background: none;
+    border: none;
+}
+
+.todo {
+    background-color: lightblue;
+    height: 6rem;
+    padding: 0 1rem;
+    border: 3px solid white;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo input[type="text"] {
+    font-size: 1.25rem;
+    flex-grow: 1;
+    background: none;
+    border: none;
+}
+
+.todo input[type="text"]:focus {
+    outline: none;
+    border-bottom: 3px solid white;
+}
