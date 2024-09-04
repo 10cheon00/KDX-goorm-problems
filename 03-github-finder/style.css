@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+}
+
+header {
+  background-color: #238fff;
+  padding: 1rem;
+  color: white;
+}
+
+header h2 {
+  margin: 0;
+}
+
+.container {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 0.25rem;
+}
+
+#searchbar h1 {
+  margin: 0;
+}
+
+#searchbar p {
+  color: gray;
+}
+
+#searchbar input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  outline: none;
+  border-radius: 5px;
+}
+
+#searchbar input:focus {
+  border: 1px solid #238fff;
+}
+
+#profile {
+  display: flex;
+}
+
+#profile #avatar {
+  max-width: 250px;
+}
+
+#profile #avatar img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#profile #avatar button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #238fff;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+}
+
+#profile #avatar button:hover {
+  background-color: #0e58a6;
+}
+
+#Profile #info {
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+#profile #info > * {
+  margin: 0;
+  padding: 0;
+}
+
+#profile #info #stats {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+#profile #info #stats li {
+  list-style: none;
+}
+
+#profile #info #stats li#repos {
+  background-color: #238fff;
+}
+
+#profile #info #stats li#gists {
+  background-color: #8d8d8d;
+}
+
+#profile #info #stats li#followers {
+  background-color: #3dff8e;
+}
+
+#profile #info #stats li#following {
+  background-color: #00b28e;
+}
+
+#profile #info #bio li {
+  padding: 1rem;
+  border-bottom: 1px solid lightgray;
+  list-style: none;
+}
+
+#profile #info #bio li:last-child {
+  border-bottom: none;
+}
+
+#repository {
+  margin: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+#repository .repo {
+  display: flex;
+  margin: 0.5rem 0;
+}
+
+#repository .repo > a {
+  flex-grow: 1;
+}
+
+#repository .repo #stars {
+  background-color: #238fff;
+}
+
+#repository .repo #watchers {
+  background-color: #8d8d8d;
+}
+
+#repository .repo #forks {
+  background-color: #3dff8e;
+}
+
+.chip {
+  padding: 0.25rem 1rem;
+  margin-right: 0.25rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.chip:last-child {
+  margin-right: 0;
+}
