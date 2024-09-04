@@ -23,7 +23,7 @@ const createColumnIndexCellElements = () => {
   disabledCellElement.classList.add("cell-header");
   disabledCellElement.disabled = true;
   columnIndexCellElements.append(disabledCellElement);
-  "ABCDEFGHIJ".split("").forEach((i) => {
+  Array(SIZE).keys().forEach((i) => {
     columnIndexCellElements.append(createColumnIndexCellElement(i));
   });
   return columnIndexCellElements;
@@ -33,7 +33,7 @@ const createColumnIndexCellElement = (index) => {
   const columnIndexCellElement = createCellElement();
   columnIndexCellElement.classList.add("cell-header", "cell-header-column");
   columnIndexCellElement.disabled = true;
-  columnIndexCellElement.value = index;
+  columnIndexCellElement.value = indexToAlphabet(index);
   return columnIndexCellElement;
 };
 
@@ -45,7 +45,10 @@ const createRowIndexCellElementAndCellElements = (i) => {
     .forEach((j) => {
       const cellElement = createCellElement();
       cellElement.classList.add("cell-data");
-      cellElement.addEventListener("focus", () => highlightCellHeader(i, j));
+      cellElement.addEventListener("focus", () => {
+        highlightCellHeader(i, j);
+        indicateCell(i, j);
+      });
       rowElement.appendChild(cellElement);
     });
   return rowElement;
@@ -82,6 +85,11 @@ const highlightCellHeader = (i, j) => {
   });
 };
 
+const indicateCell = (i, j) => {
+  const indicatorElement = document.getElementById("cell-indicator");
+  indicatorElement.innerText = `Cell : ${indexToAlphabet(i)}${j}`;
+};
+
 const createCellElement = () => {
   const cellElement = document.createElement("input");
   cellElement.classList.add("cell");
@@ -91,11 +99,11 @@ const createCellElement = () => {
 const exportSpreadsheet = () => {
   const cellElements = Array.from(document.querySelectorAll(".cell-data"));
   const cells = [];
-  while(cellElements.length) {
-    cells.push(cellElements.splice(0, SIZE).map(element => element.value));
+  while (cellElements.length) {
+    cells.push(cellElements.splice(0, SIZE).map((element) => element.value));
   }
 
-  const csvData = cells.map(row => row.join(",")).join("\n");
+  const csvData = cells.map((row) => row.join(",")).join("\n");
   const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -105,3 +113,7 @@ const exportSpreadsheet = () => {
   link.click();
   document.body.removeChild(link);
 };
+
+const indexToAlphabet = (index) => {
+  return "ABCDEFGHIJ".split("")[index];
+}
