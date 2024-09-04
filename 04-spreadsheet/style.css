@@ -1,0 +1,16 @@
+.cell {
+    width: 75px;
+    height: 50px;
+    outline: none;
+    border: 1px solid lightgray;
+}
+
+.cell-header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.cell-header.active {
+    color: white;
+    background-color: #238fff;
+}
