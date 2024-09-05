@@ -1,0 +1,11 @@
+#budget-alert {
+  background-color: blue;
+  padding: 0.75rem;
+}
+
+#budget-alert p {
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  margin: 0;
+}

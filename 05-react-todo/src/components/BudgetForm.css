@@ -1,0 +1,27 @@
+#budget-form {
+  background-color: white;
+  padding: 1rem;
+}
+
+#budget-form-input {
+  display: flex;
+  gap: 1rem;
+}
+
+#budget-form-input label {
+  color: #248601;
+}
+
+#budget-form-input input {
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid #3e8fb2;
+  padding: 0.5rem;
+}
+
+#budget-form .budget-form-item {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}

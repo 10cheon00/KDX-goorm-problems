@@ -1,0 +1,33 @@
+#budget-list {
+  padding: 1rem;
+  background-color: white;
+}
+
+#budget-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;;
+}
+
+#budget-list ul li {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+#budget-list ul li:last-child {
+  margin-bottom: 0;
+}
+
+#budget-list ul li #budget-amount {
+  color: gray;
+}
+
+#budget-list ul li span {
+  flex: 1;
+}
+
+#budget-list ul li svg {
+  height: 100%;
+}
