@@ -90,6 +90,13 @@ const createTodoCheckBoxElement = (todoIndex) => {
     localStorageManager.updateTodo(todoIndex, (todo) => {
       todo.checked = event.currentTarget.checked;
     });
+    const todoTitleElement = document.querySelector(
+      `#todo-${todoIndex} input[type="text"]`);
+    if (event.target.checked) {
+      todoTitleElement.style.setProperty("text-decoration", "line-through")
+    } else {
+      todoTitleElement.style.setProperty("text-decoration", "none")
+    }
   });
   return checkBoxElement;
 };
