@@ -13,7 +13,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [firebaseError, setFirebaseError] = useState("");
 
-  const saveUserAndRedirect = (res) => {
+  const saveUserAndRedirect = (res: any) => {
     const user = {
       email: res.user.email,
       token: res.user.accessToken,
@@ -33,7 +33,10 @@ const SignIn = () => {
 
   const signIn = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(saveUserAndRedirect)
+      .then((res) => {
+    console.dir(res);
+    saveUserAndRedirect(res);
+      })
       .catch((err) => {
         setFirebaseError("로그인 정보가 잘못되었습니다.");
       });
