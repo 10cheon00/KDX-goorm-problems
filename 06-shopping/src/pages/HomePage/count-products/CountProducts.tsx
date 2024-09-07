@@ -1,12 +1,16 @@
-import styles from './CountProducts.module.scss';
+import { IProduct } from "../../../store/products/products.type";
+import styles from "./CountProducts.module.scss";
 
-const CountProducts = () => {
+type Products = {
+  products: Array<IProduct>;
+};
 
-    return (
-        <div className={styles.count_products}>
-      
-        </div>
-    )
-}
+const CountProducts = ({ products }: Products) => {
+  return (
+    <div className={styles.count_products}>
+      <p>Showing: {products.length} items</p>
+    </div>
+  );
+};
 
-export default CountProducts
+export default CountProducts;

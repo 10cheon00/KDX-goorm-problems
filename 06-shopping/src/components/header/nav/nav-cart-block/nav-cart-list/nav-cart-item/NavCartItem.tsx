@@ -11,7 +11,6 @@ type NavCartItemProps = {
 }
 
 const NavCartItem: FC<NavCartItemProps> = ({ item }) => {
-
     const dispatch = useAppDispatch();
 
     const deleteProduct = () => {

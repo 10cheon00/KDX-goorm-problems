@@ -1,5 +1,5 @@
 export enum CategoriesName {
-    All = "",
+    All = "All",
     Electronics = "Electronics",
     Jewelry = "Jewelery",
     MensClothing = `Men's clothing`,
