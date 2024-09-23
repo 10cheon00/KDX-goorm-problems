@@ -71,17 +71,19 @@ public class LinkedList<T> implements Iterable<T> {
         return iter.getData();
     }
 
-    public void delete(int index) {
+    public T delete(int index) {
         Node iter = getNode(index - 1);
         if (iter == null || iter.getNext() == null) {
-            return;
+            return null;
         }
-        iter.setNext(iter.getNext().getNext());
+        Node removed = iter.getNext();
+        iter.setNext(removed.getNext());
         size--;
+        return removed.getData();
     }
 
     private Node getNode(int index) {
-        if (index < 0 || index >= size) {
+        if (index < -1 || index >= size) {
             return null;
         }
         Node iter = head;
