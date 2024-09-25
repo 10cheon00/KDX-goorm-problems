@@ -1,21 +1,22 @@
 import { NoteCard } from "../components"
+import { FilterType } from "../store/filter/filterSlice";
 import { NotesContainer } from "../styles/styles"
 import { Note } from "../types/note"
 
-const filteredNotes = (notes: Note[], filter: string) => {
+const filteredNotes = (notes: Note[], filter: typeof FilterType[keyof typeof FilterType]) => {
 
     const lowPriority = notes.filter(({ priority }) => priority === "low");
     const highPriority = notes.filter(({ priority }) => priority === "high");
 
-    if (filter === "low") {
+    if (filter === FilterType.PRIORITY_LOW) {
         return [...lowPriority, ...highPriority];
-    } else if (filter === "high") {
+    } else if (filter === FilterType.PRIORITY_HIGH) {
         return [...highPriority, ...lowPriority];
-    } else if (filter === 'latest') {
+    } else if (filter === FilterType.LATEST) {
         return notes.sort((a, b) => b.createdTime - a.createdTime);
-    } else if (filter === "created") {
+    } else if (filter === FilterType.CREATED) {
         return notes.sort((a, b) => a.createdTime - b.createdTime);
-    } else if (filter === "edited") {
+    } else if (filter === FilterType.EDITED) {
         const editedNotes = notes.filter(({ editedTime }) => editedTime);
         const normalNotes = notes.filter(({ editedTime }) => !editedTime);
 

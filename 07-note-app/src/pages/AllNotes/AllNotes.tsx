@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiltersModal } from "../../components";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { toggleFiltersModal } from "../../store/modal/modalSlice";
+import { FilterType, setFilter } from "../../store/filter/filterSlice";
 import { ButtonOutline, Container, EmptyMsgBox } from "../../styles/styles";
 import getAllNotes from "../../utils/getAllNotes";
 import { Box, InputBox, TopBox } from "./AllNotes.styles";
@@ -10,15 +11,15 @@ const AllNotes = () => {
   const dispatch = useAppDispatch();
   const { mainNotes } = useAppSelector((state) => state.notesList);
   const { viewFiltersModal } = useAppSelector((state) => state.modal);
-  const [filter, setFilter] = useState("");
+  const { filterType } = useAppSelector((state) => state.filter)
   const [searchInput, setSearchInput] = useState("");
 
   const filterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    dispatch(setFilter(e.target.value));
   };
 
   const clearHandler = () => {
-    setFilter("");
+    setFilter(FilterType.NONE);
   };
 
   let notes = mainNotes;
@@ -32,7 +33,7 @@ const AllNotes = () => {
         <FiltersModal
           handleFilter={filterHandler}
           handleClear={clearHandler}
-          filter={filter}
+          filterType={filterType}
         />
       )}
       <TopBox>
@@ -61,7 +62,7 @@ const AllNotes = () => {
         <>
           <Box>
             {/* Notes */}
-            {getAllNotes(notes, filter)}
+            {getAllNotes(notes, filterType)}
           </Box>
         </>
       )}

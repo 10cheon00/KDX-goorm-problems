@@ -2,16 +2,18 @@ import React from 'react'
 import { FaTimes } from 'react-icons/fa';
 import { useAppDispatch } from '../../../hooks/redux';
 import { toggleFiltersModal } from '../../../store/modal/modalSlice';
+import { FilterType } from '../../../store/filter/filterSlice';
 import { DeleteBox, FixedContainer } from '../Modal.styles';
 import { Box, Container, TopBox } from './FilterModal.styles';
+import FilterRadioButton from './FilterRadioButton';
 
 interface FiltersModalProps {
   handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClear: () => void;
-  filter: string;
+  filterType: typeof FilterType[keyof typeof FilterType]
 }
 
-const FiltersModal = ({ handleFilter, handleClear, filter }: FiltersModalProps) => {
+const FiltersModal = ({ handleFilter, handleClear, filterType }: FiltersModalProps) => {
 
   const dispatch = useAppDispatch();
 
@@ -33,67 +35,51 @@ const FiltersModal = ({ handleFilter, handleClear, filter }: FiltersModalProps) 
 
         <Box>
           <div className='filters__subtitle'>PRIORITY</div>
-          <div className='filters__check'>
-            <input
-              type="radio"
-              name="filter"
-              value="low"
-              id="low"
-              checked={filter === "low"}
-              onChange={(e) => handleFilter(e)}
-            />
-            <label htmlFor='low'>Low to High</label>
-          </div>
-          <div className='filters__check'>
-            <input
-              type="radio"
-              name="filter"
-              value="high"
-              id="high"
-              checked={filter === "high"}
-              onChange={(e) => handleFilter(e)}
-            />
-            <label htmlFor='low'>High to Low</label>
-          </div>
+          <FilterRadioButton 
+            handleFilter={handleFilter} 
+            selectedType={filterType} 
+            Type={FilterType.PRIORITY_LOW} 
+            label={"Low to High"}          
+          />
+          <FilterRadioButton 
+            handleFilter={handleFilter} 
+            selectedType={filterType} 
+            Type={FilterType.PRIORITY_HIGH} 
+            label={"High to Low"}          
+          />
         </Box>
-
-
 
         <Box>
           <div className='filters__subtitle'>DATE</div>
-          <div className='filters__check'>
+          <FilterRadioButton 
+            handleFilter={handleFilter} 
+            selectedType={filterType} 
+            Type={FilterType.LATEST} 
+            label={"Sort by Latest"}          
+          />
+         <FilterRadioButton 
+            handleFilter={handleFilter} 
+            selectedType={filterType} 
+            Type={FilterType.CREATED} 
+            label={"Sort by Created"}          
+          />
+          <FilterRadioButton 
+            handleFilter={handleFilter} 
+            selectedType={filterType} 
+            Type={FilterType.EDITED} 
+            label={"Sort by Edited"}          
+          />
+          {/* <div className='filters__check'>
             <input
               type="radio"
               name="filter"
-              value="latest"
-              id="new"
-              checked={filter === "latest"}
-              onChange={(e) => handleFilter(e)}
-            />
-            <label htmlFor='new'>Sort by Latest</label>
-          </div>
-          <div className='filters__check'>
-            <input
-              type="radio"
-              name="filter"
-              value="created"
-              id="create"
-              checked={filter === "created"}
-              onChange={(e) => handleFilter(e)}
-            />
-            <label htmlFor='create'>Sort by Created</label>
-          </div>
-          <div className='filters__check'>
-            <input
-              type="radio"
-              name="filter"
-              value="edited"
-              id="edit"
-              checked={filter === "edited"}
+              value={FilterType.EDITED}
+              id={FilterType.EDITED}
+              checked={filterType === FilterType.EDITED}
               onChange={(e) => handleFilter(e)}
             />
             <label htmlFor='edit'>Sort by Edited</label>
-          </div>
+          </div> */}
         </Box>
 
 
