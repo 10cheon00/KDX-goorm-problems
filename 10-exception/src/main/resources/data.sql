@@ -1,0 +1,1 @@
+INSERT INTO student_grade(name, grade) VALUES ('foo', 1);
