@@ -1,12 +1,30 @@
 package com.kdx.problem10.repository;
 
 import com.kdx.problem10.entity.StudentGrade;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-public interface StudentGradeRepository extends JpaRepository<StudentGrade, Long> {
-    List<StudentGrade> findAllByOrderByGradeAsc();
-    Optional<StudentGrade> findGradeByGrade(Integer grade);
+public class StudentGradeRepository {
+    private Set<StudentGrade> studentGradeSet;
+
+    public StudentGradeRepository() {
+        this.studentGradeSet = new HashSet<>();
+    }
+
+    public List<StudentGrade> findAll() {
+        return studentGradeSet.stream().toList();
+    }
+
+    public List<StudentGrade> saveAll(List<StudentGrade> list) {
+        studentGradeSet.addAll(list);
+        return list;
+    }
+
+    public StudentGrade save(StudentGrade studentGrade) {
+        studentGradeSet.add(studentGrade);
+        return studentGrade;
+    }
 }

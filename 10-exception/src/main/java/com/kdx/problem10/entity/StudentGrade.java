@@ -1,16 +1,7 @@
 package com.kdx.problem10.entity;
 
-import jakarta.persistence.*;
-
-@Entity
 public class StudentGrade {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    // todo: Student와 ManyToOne?
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private Integer grade;
 
     public StudentGrade() {}
