@@ -1,19 +1,13 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Set<Product> productSet = new HashSet<>();
-
-        Product p1 = new Product("커피", 3500);
-        Product p2 = new Product("주먹밥", 1700);
-        Product p3 = new Product("라면", 2000);
-        Product p4 = new Product("도시락", 6500);
-
-        productSet.add(p1);
-        productSet.add(p2);
-        productSet.add(p3);
-        productSet.add(p4);
+        List<Product> products = retrieveProductsFromCsv();
+        productSet.addAll(products);
 
         System.out.println("고유한 상품 목록");
         for(Product product : productSet) {
@@ -22,19 +16,34 @@ public class Main {
 
         Cart myCart = new Cart();
 
-        myCart.addProduct(p1, 1);
-        myCart.addProduct(p1, 1);
-        myCart.addProduct(p2, 3);
-        myCart.addProduct(p2, 2);
-        myCart.addProduct(p3, 4);
-        System.out.println("카트에 담긴 상품 목록");
-        myCart.showItems();
-
-        myCart.removeProduct(p1, 3); // will remove product p1.
-        myCart.removeProduct(p2, 2);
-        myCart.removeProduct(p3, 3);
+        myCart.addProduct(products.get(0), 1);
+        myCart.addProduct(products.get(3), 2);
+        myCart.addProduct(products.get(2), 1);
+        myCart.addProduct(products.get(1), 3);
+        myCart.addProduct(products.get(0), 2);
 
         System.out.println("카트에 담긴 상품 목록");
         myCart.showItems();
+
+        myCart.removeProduct(products.get(1), 3); // will remove product.
+        myCart.removeProduct(products.get(2), 2); // can't remove product, quantity is greater than cart's
+        myCart.removeProduct(products.get(0), 3);
+        myCart.showItems();
+    }
+
+    private static List<Product> retrieveProductsFromCsv() {
+        String COMMA_DELIMITER = ",";
+        List<Product> products = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("products.csv"))) {
+            String line;
+            br.readLine(); // pass header
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(COMMA_DELIMITER);
+                products.add(new Product(values[0], Integer.parseInt(values[1])));
+            }
+            return products;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
