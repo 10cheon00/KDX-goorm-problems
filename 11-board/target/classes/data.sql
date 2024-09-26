@@ -1,0 +1,21 @@
+INSERT INTO board(title, body, delete_status) VALUES ('foo1', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo2', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo3', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo4', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo5', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo6', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo7', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo8', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('foo9', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('baz1', 'bar', 'DELETE');
+INSERT INTO board(title, body, delete_status) VALUES ('baz2', 'bar', 'DELETE');
+INSERT INTO board(title, body, delete_status) VALUES ('baz3', 'bar', 'ACTIVE');
+INSERT INTO board(title, body, delete_status) VALUES ('baz4', 'bar', 'ACTIVE');
+
+INSERT INTO comment(board_no, body, delete_status) VALUES (1, '개추1', 'ACTIVE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (1, '개추2', 'ACTIVE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (1, '개추3', 'DELETE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (1, '개추4', 'DELETE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (1, '개추5', 'ACTIVE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (2, '개추1', 'ACTIVE');
+INSERT INTO comment(board_no, body, delete_status) VALUES (2, '개추2', 'ACTIVE');
