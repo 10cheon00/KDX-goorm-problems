@@ -1,4 +1,6 @@
 package com.kdx.problem11.expense.dto;
 
-public record ExpenseRequestDto() {
+import java.math.BigDecimal;
+
+public record ExpenseRequestDto(String name, BigDecimal amount) {
 }

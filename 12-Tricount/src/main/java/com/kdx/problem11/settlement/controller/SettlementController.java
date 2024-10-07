@@ -1,8 +1,7 @@
 package com.kdx.problem11.settlement.controller;
 
 import com.kdx.problem11.auth.config.Authentication;
-import com.kdx.problem11.auth.config.SessionConst;
-import com.kdx.problem11.expense.dto.SettlementBalanceDto;
+import com.kdx.problem11.settlement.dto.SettlementBalanceDto;
 import com.kdx.problem11.member.domain.Member;
 import com.kdx.problem11.settlement.dto.SettlementRequestDto;
 import com.kdx.problem11.settlement.dto.SettlementResponseDto;
@@ -23,6 +22,7 @@ public class SettlementController {
     /**
      * get settlement list
      * 멤버가 가진 정산 목록을 보여줌
+     * 정산에 속한 멤버나 expense를 보여주지는 않음.
      *
      * @return
      */
@@ -46,6 +46,7 @@ public class SettlementController {
     /**
      * get settlement
      * 멤버가 속한 특정 정산을 조회함
+     * 속한 멤버를 보여줌.
      *
      * @param id
      * @return
@@ -62,8 +63,8 @@ public class SettlementController {
      * @param id
      */
     @DeleteMapping("/{id}")
-    public void deleteSettlement(@PathVariable Long id) {
-
+    public void deleteSettlement(@Authentication Member member, @PathVariable Long id) {
+        settlementService.remove(member.getId(), id);
     }
 
     /**
@@ -75,8 +76,8 @@ public class SettlementController {
      * @return
      */
     @PostMapping("/{id}")
-    public SettlementResponseDto joinSettlement(@PathVariable Long id, @RequestBody SettlementRequestDto settlementRequestDto) {
-        return null;
+    public void joinSettlement(@Authentication Member member, @PathVariable Long id) {
+        settlementService.join(member.getId(), id);
     }
 
     /**
@@ -86,7 +87,7 @@ public class SettlementController {
      * @return
      */
     @GetMapping("/{id}/balance")
-    public List<SettlementBalanceDto> getSettleBalance() {
-        return null;
+    public List<SettlementBalanceDto> getSettleBalance(@PathVariable Long id) {
+        return settlementService.calculateBalance(id);
     }
 }

@@ -26,7 +26,7 @@ CREATE TABLE member_settlement
     settlement_id bigint,
     primary key (id),
     foreign key (member_id) REFERENCES member,
-    foreign key (settlement_id) REFERENCES settlement
+    foreign key (settlement_id) REFERENCES settlement ON DELETE CASCADE
 );
 
 CREATE TABLE expense
@@ -39,10 +39,23 @@ CREATE TABLE expense
     created_at timestamp default CURRENT_TIMESTAMP(),
     primary key(id),
     foreign key (member_id) REFERENCES member,
-    foreign key (settlement_id) REFERENCES settlement
+    foreign key (settlement_id) REFERENCES settlement ON DELETE CASCADE
 );
 
 INSERT INTO member(name, password, nickname) VALUES ('foo', 'bar', 'baz');
-INSERT INTO settlement(name) VALUES ('foo');
+INSERT INTO member(name, password, nickname) VALUES ('can', 'bar', 'cant');
+INSERT INTO member(name, password, nickname) VALUES ('should', 'bar', 'shouldnt');
+INSERT INTO member(name, password, nickname) VALUES ('would', 'bar', 'would');
+INSERT INTO settlement(name) VALUES ('settlement one');
 INSERT INTO member_settlement(member_id, settlement_id) VALUES (1, 1);
-INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('foo', 1, 1, 100);
+INSERT INTO member_settlement(member_id, settlement_id) VALUES (2, 1);
+INSERT INTO member_settlement(member_id, settlement_id) VALUES (3, 1);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee1', 1, 1, 1900);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee2', 2, 1, 3300);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee3', 3, 1, 2000);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee4', 4, 1, 3000);
+INSERT INTO settlement(name) VALUES ('settlement two');
+INSERT INTO member_settlement(member_id, settlement_id) VALUES (2, 2);
+INSERT INTO member_settlement(member_id, settlement_id) VALUES (3, 2);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee2', 2, 2, 90000);
+INSERT INTO expense(name, member_id, settlement_id, amount) VALUES ('fee3', 3, 2, 100000);
